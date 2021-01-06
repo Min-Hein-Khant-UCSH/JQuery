@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>To Do List</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="todo-list-wrapper">
+		<ul id="list">
+			
+		</ul>
+		<form action="" class="std-form">
+			<input type="text" id="new-task">
+			<button id="btn" type="submit">New Task</button>
+		</form>
+	</div>
+	<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		$("form").submit(function(event){
+		var new_text=$("#new-task").val();
+		if(new_text){
+		var new_task=$("<li>",{
+		    text:new_text,
+		    append:`<span class="remove">Remove</span>`,
+		    });
+		    $("#list").append(new_task);
+		    $("#new-task").val('');
+		    }
+		    else
+		    {
+		    alert("Empty Text");
+		    }
+		    // console.log(new_text);
+		    event.preventDefault();
+		    });
+		    $(document).on('click','.remove',function(){
+		    $(this).parent().remove();
+		    });
+		})
+	</script>
+</body>
+</html>

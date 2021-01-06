@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.box
+		{
+			background:blue;
+			color: #fff;
+		    max-width: 800px;
+		    padding: 30px;
+		    margin:30px auto;
+		    border-radius: 20px;
+		}
+		.btn-wrapper
+		{
+			text-align: center;
+		}
+		.btn
+		{
+			background-color: #222;
+			color: #fff;
+			padding: 15px;
+			outline: none;
+			margin: 5px;
+			font-size: 25px;
+			 border-radius: 10px;
+			 cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut aperiam nihil, possimus illum ea architecto ipsum cupiditate ex reprehenderit eligendi non soluta exercitationem provident perferendis magni quidem vero fuga, sint?
+	</div>
+	<div class="btn-wrapper">
+		<button class="btn btn-1">show</button>
+		<button class="btn btn-2">hide</button>
+	</div>
+	<script type="text/javascript" src="jquery-3.5.1.js"></script>
+	<script type="text/javascript">
+		// $(".btn-1").on("click",function(){
+		// 	$(".box").show(1000);
+		// });
+		$(".btn-2").on("click",function(){
+			$(".box").toggle(1000);
+
+		});
+		// $(".btn-2").on("mouseenter",function(){
+		// 	$(".box").css("border","10px solid green");
+		// });
+		// $(".btn-2").on("mouseleave",function(){
+		// 	$(".box").css("border","20px solid red");
+			
+		// });
+		// $(function(){
+		// 	$(".btn-1").click(function(){
+		// 		alert("Hi");
+		// 	});
+		// 	$(".btn-2").click(function(){
+		// 		alert("Hello");
+		// 	})
+		// })
+	</script>
+</body>
+</html>
