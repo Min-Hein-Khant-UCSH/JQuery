@@ -1,0 +1,30 @@
+body 
+{
+        background-color: #353b48;
+}
+
+.nav .nav-item .nav-link
+{
+        color: #ffff !important;
+}
+
+.header 
+{
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmiro.medium.com%2Fmax%2F1200%2F1*8hu8uJ6wIQFmKueeKunj0w.jpeg&f=1&nofb=1");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-bottom-left-radius: 10%;
+        border-bottom-right-radius: 15%;
+}
+
+.card 
+{
+        border-radius: 20px !important;
+}
+
+.card-dark 
+{
+        background-color: rgba(0, 0, 0, 0.2);
+        color: white;
+}

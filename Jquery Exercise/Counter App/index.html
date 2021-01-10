@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h1>JQuery 5Min</h1>
+	<div id="hello">
+		<button id="plus">+</button>
+	<span id="counter">0</span>
+	<button id="minus">-</button>
+	<span id="warning"></span>
+	</div>
+	
+	<script type="text/javascript" src="../jquery-3.5.1.js"></script>
+	<script type="text/javascript">
+		let counter=0;
+		function checked() {
+			// body...
+			if(counter>5){
+					$("#warning").text("Stop");
+				}
+				else if (counter<0) {
+					$("#hello").remove();
+				}
+				else
+				{
+					$("#warning").text("");
+				}
+
+		}
+		$(function(){
+			
+			$("#plus").on('click',function(){
+				$("#counter").text(++counter);
+				checked();
+				
+			});
+			$("#minus").on('click',function(){
+				$("#counter").text(--counter);
+				checked();
+			});
+		})
+	</script>
+</body>
+</html>

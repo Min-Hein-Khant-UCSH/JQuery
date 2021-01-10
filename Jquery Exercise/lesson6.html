@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		img
+		{
+			position: relative;
+		}
+	</style>
+</head>
+<body>
+	<input type="text" placeholder="Myanmar" id="myanmar">
+	<input type="text" placeholder="English" id="english">
+	<input type="text" placeholder="Mathematics" id="mathematics">
+	<button id="btn">Submit</button>
+	<script type="text/javascript" src="jquery-3.5.1.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			$("#btn").click(function(){
+				let myanmar=$("#myanmar").val();
+				let english=$("#english").val();
+				let mathematics=$("#mathematics").val();
+
+				if(myanmar>=40 && english>=40 && mathematics>= 40)
+				{
+					alert("Pass Exam");
+				}
+				else if(myanmar>=80 || english>=80 || mathematics>=80)
+				{
+					alert("pass and Desition");
+				}
+				else
+				{
+					alert("Fail Exam");
+				}
+
+			})
+		});
+	</script>
+</body>
+</html>

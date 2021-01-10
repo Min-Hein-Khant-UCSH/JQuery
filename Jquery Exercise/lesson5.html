@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Accordion Design Css</title>
+	<style type="text/css" media="screen">
+		*
+		{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body
+		{
+			position: relative;
+
+		}
+		.accordion {
+    max-width: 650px;
+    background: #f0fffe;
+    line-height: 35px;
+    margin: 60px auto;
+    transition: all 0.10s ease-in-out;
+    box-shadow: 0 0 12px 1px #d8d8d8;
+   
+}
+.accordion:hover
+{
+	 box-shadow: 0 0 17px 1px #d8d8d8;
+	 margin: 55px auto;
+}
+h3.accordion_title {
+    font-size: 27px;
+    background: #7cd5d0;
+    color: white;
+    margin: 0;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+.accordion .accordion_content {
+    padding: 20px;
+    text-align: justify-all;
+}
+
+	</style>
+</head>
+<body>
+	<div class="accordion">
+		<h3 class="accordion_title">Services</h3>
+		<div class="accordion_content">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt a eum doloremque asperiores vitae! Ipsam recusandae laboriosam, velit. Vero dicta tempora est perspiciatis suscipit ipsa inventore. Qui quod quo repudiandae!Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt quaerat, impedit ducimus consectetur.
+		</div>
+	</div>
+	<script type="text/javascript" src="jquery-3.5.1.js"></script>
+	<script type="text/javascript">
+		 $(".accordion_content").hide();
+		// $(".accordion_title").click(function(){
+		// 	$(".accordion_content").slideDown(500,function(){
+		// 		$(".accordion_content").delay(1000, slideUp());
+		// 	});
+		// })
+		jQuery.fn.myhideshow=function() {
+			// body...
+			$(this).slideDown(500, function() {
+				$(this).delay(3000).slideUp();
+			});
+			$(this).slideDown(500);
+			$(this).delay(3000).slideUp();
+
+		}
+
+		$(".accordion_title").click(function(){
+			$(this).siblings('.accordion_content').myhideshow();
+		})
+	</script>
+</body>
+</html>
