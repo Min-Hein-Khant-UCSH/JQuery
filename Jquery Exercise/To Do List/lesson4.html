@@ -5,16 +5,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>To Do List</title>
 	<link rel="stylesheet" href="style.css">
+	 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 <body>
 	<div id="todo-list-wrapper">
+		
+		<form action="" class="std-form">
+			<h1 class="h1text">To Do App</h1>
+			<input type="text" id="new-task">
+
+			<button id="btn" type="submit"><i class="fas fa-plus"></i></button>
+		</form>
 		<ul id="list">
 			
 		</ul>
-		<form action="" class="std-form">
-			<input type="text" id="new-task">
-			<button id="btn" type="submit">New Task</button>
-		</form>
 	</div>
 	<script type="text/javascript" src="../jquery-3.5.1.js"></script>
 	<script type="text/javascript">
@@ -24,7 +28,7 @@
 		if(new_text){
 		var new_task=$("<li>",{
 		    text:new_text,
-		    append:`<span class="remove">Remove</span>`,
+		    append:`<span class="remove icon"><i class="fas fa-trash"></i></span>`,
 		    });
 		    $("#list").append(new_task);
 		    $("#new-task").val('');

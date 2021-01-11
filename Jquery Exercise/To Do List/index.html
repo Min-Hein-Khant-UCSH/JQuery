@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- Somehow I got an error, so I comment the title, just uncomment to show -->
+    <!-- <title>To-Do List | CodingNepal</title> -->
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Montserrat:600|Noto+Sans|Open+Sans:400,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  color: #f2f2f2;
+  box-sizing: border-box;
+}
+.center{
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #1b1b1b;
+  border-radius: 5px;
+}
+.center .button{
+  width: 350px;
+  background: #1b1b1b;
+  height: 50px;
+  padding: 0 20px;
+  border-radius: 5px 5px 0 0;
+}
+.button .text{
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 50px;
+  letter-spacing: 1px;
+  font-family: 'Open Sans',sans-serif;
+}
+.button .icon{
+  font-size: 30px;
+  float: right;
+  line-height: 40px;
+  cursor: pointer;
+}
+.center .field{
+  height: 45px;
+  width: 350px;
+  background: #f2f2f2;
+  position: relative;
+  display: block;
+}
+.field.hide{
+  display: none;
+}
+.field input{
+  height: 100%;
+  width: 100%;
+  padding-left: 15px;
+  font-size: 18px;
+  outline: none;
+  background: none;
+  color: #202020;
+  border: 2px solid #1b1b1b;
+}
+.field .add-btn{
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: #1b1b1b;
+  font-size: 17px;
+  padding: 4px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: 'Montserrat',sans-serif;
+  display: none;
+}
+input:valid ~ .add-btn{
+  display: block;
+}
+.center ul{
+  list-style: none;
+  overflow: hidden;
+}
+ul li{
+  height: 45px;
+  width: 100%;
+  line-height: 45px;
+  background: #262626;
+  font-family: 'Noto Sans',sans-serif;
+}
+ul li:nth-child(2n){
+  background: #1b1b1b;
+}
+ul li:last-child{
+  border-radius: 0 0 5px 5px;
+}
+ul li:last-child span{
+  border-radius: 0 5px 5px 5px;
+}
+ul li span{
+  margin-right: 20px;
+  height: 45px;
+  width: 45px;
+  margin-left: -45px;
+  background: #e74c3c;
+  display: inline-block;
+  line-height: 45px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
+  transition: 0.3s ease;
+}
+ul li:hover span{
+  margin-left: 0px;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="center">
+      <div class="button">
+        <span class="text">To-Do List</span>
+        <span class="icon"><i class="fas fa-sort-down"></i></span>
+      </div>
+    <div class="field">
+        <input type="text" required placeholder="Add your new to-do list">
+        <span class="add-btn">ADD</span>
+      </div>
+<ul>
+<li><span><i class="fa fa-trash"></i></span>Get a new laptop</li>
+<li><span><i class="fa fa-trash"></i></span>Go to shopping</li>
+<li><span><i class="fa fa-trash"></i></span>Read a newspaper</li>
+<li><span><i class="fa fa-trash"></i></span>Go to college</li>
+<li><span><i class="fa fa-trash"></i></span>Buy a new phone</li>
+</ul>
+</div>
+<script>
+      $('.add-btn').click(function(){
+        $('ul').append("<li><span><i class='fa fa-trash'></i></span>"+ $('input').val() +"</li>");
+         $('input').val("");
+      });
+      $('ul').on("click", 'span', function(){
+        $(this).parent().fadeOut(500,function(){
+          $(this).remove();
+        });
+      });
+      $('.icon').click(function(){
+        $('.field').toggleClass("hide");
+      })
+      
+    </script>
+  </body>
+</html>
