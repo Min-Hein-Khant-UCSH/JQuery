@@ -110,9 +110,9 @@
 </head>
 
 <body>
-    <!-- <div class="loader_bg">
+    <div class="loader_bg">
         <div class="loader"></div>
-    </div> -->
+    </div>
          <!-- Start Header -->
 
         <div class="jumbotron jumbotron-fluid header">
@@ -239,13 +239,15 @@
 			                                                <th class="text-white">Qty</th>
 			                                                <th class="text-white">Price</th>
 			                                                <th class="text-white">Subtotal</th>
+			                                                <th class="text-white">Action</th>
 			            
 			                                        </tr>
 			                                	</thead>
 			                                	<tbody>
 			                                        
 			                                	</tbody>
-                        					</table>     
+                        					</table>
+                        					<button class="btn btn-outline-info" id="checkbtn">Checkout</button>     
                                 		</div>
                                 
                         		</div>
@@ -269,8 +271,14 @@
                 crossorigin="anonymous"></script>
         <script>$(document).ready(function () { $('body').bootstrapMaterialDesign(); });</script>
         <script type="text/javascript">
+        setTimeout(function(){
+            $(".loader_bg").fadeToggle();
+        },3000);
+        </script>
+        <script type="text/javascript">
         	jQuery(document).ready(function() {
         		showData();
+                count();
         		$(".addtocart").click(function(){
         			//alert("aSome");
         			let id=$(this).data('id');
@@ -284,6 +292,7 @@
         				name:name,
         				photo:photo,
         				price:price,
+        				qty:1
 
         			};
         			//console.log(item);
@@ -297,10 +306,27 @@
         			{
         				itemArray=JSON.parse(itemlist);
         			}
-        			itemArray.push(item);
+        			//console.log(itemArray);
+        			let status=false;
+        			$.each(itemArray,function(i, v) {
+
+        				if(v.id==id)
+        				{
+        					//alert("hi");
+        					v.qty++;
+        					 status=true;
+        				}
+        				
+        			});
+        			if(!status)
+        			{
+        				itemArray.push(item);
+        			}
+        			
         			let itemString=JSON.stringify(itemArray);
         			localStorage.setItem('item',itemString);
         			showData();
+                    count();
 
 
 
@@ -312,20 +338,116 @@
         			//console.log(itemArray);
         			let j=1;
         			let html="";
+        			let totals=0;
         			$.each(itemArray,function(i,v){
+        				let total=v.qty*v.price;
+        				totals+=total;
         				html+=
         				 
         				`<tr>
 						<td>${j++}</td>
 						<td>${v.name}</td>
 						<td><img src="${v.photo}" width="50px" style="border-radius:50%" height ="50px"></td>
-						<td>${v.price}</td>
-				</tr>`
+					    <td>
+					    <button data-id="${i}" class="btn btn-outline-info btn_increase"><i class="fas fa-plus"></i></button>
+
+					    <h6 class="text-center">${v.qty}</h6>
+					    <button data-id="${i}" class="btn btn-outline-info btn_decrease"><i class="fas fa-minus"></i></button>
+					    </td>
+						<td>${v.price} Kyats</td>
+						<td>${total}</td>
+						<td><button data-id="${i}" class="btn btn-outline-danger btndelete"><i class="fas fa-times"></i></button></td>
+				        </tr>`
 
         				
         			})
+        			html+=`<tr><td class="text-success" colspan="6">Total</td><td class="text-success">${totals} Kyats</td></tr>`;
         			$("tbody").html(html);
         		}
+
+        		$("#checkbtn").click(function(){
+        			let itemlist=localStorage.getItem('item');
+        			let itemArray=JSON.parse(itemlist);
+        			let totals=0;
+        			$.each(itemArray,function(i,v){
+
+        				let total=v.qty*v.price;
+        				totals+=total;
+
+        			})
+        			alert(totals+ ' Kyats');
+        		})
+
+        		$("tbody").on('click','.btndelete',function(){
+        			let id=$(this).data('id');
+        			//alert(id);
+        			let itemlist=localStorage.getItem('item');
+        			let itemArray=JSON.parse(itemlist);
+        			itemArray.splice(id,1);
+        			let stringitem=JSON.stringify(itemArray);
+        			localStorage.setItem('item',stringitem);
+        			showData();
+                    count();
+        		})
+
+                function count(){
+                    let totalcount=0;
+                    let itemlist=localStorage.getItem('item');
+                    if(itemlist)
+                    {
+                        let itemArray=JSON.parse(itemlist);
+                        $.each(itemArray,function(i,v){
+                        totalcount+=v.qty;
+                    })
+                    }
+                    
+                   
+                    $(".count").html(totalcount);
+                }
+
+                $("tbody").on('click','.btn_increase',function(){
+                    // alert("aSome");
+                    let id=$(this).data('id');
+                    //console.log(id);
+                    let itemlist=localStorage.getItem('item');
+                    let itemArray=JSON.parse(itemlist)
+                    $.each(itemArray,function(i,v){
+                        //console.log(i);
+                        if(i==id)
+                        {
+                            v.qty++;
+                        }
+                        
+                    })
+                    let itemstring=JSON.stringify(itemArray);
+                    localStorage.setItem("item", itemstring);
+                    showData();
+                    count();
+                })
+
+                $("tbody").on('click','.btn_decrease',function(){
+                    // alert("aSome");
+                    let id=$(this).data('id');
+                    //console.log(id);
+                    let itemlist=localStorage.getItem('item');
+                    let itemArray=JSON.parse(itemlist)
+                    $.each(itemArray,function(i,v){
+                        //console.log(i);
+                        if(i==id){
+                    v.qty--;
+                    if(v.qty<1){
+                        
+                        itemArray.splice(id,1);
+                    }
+                    }
+                        
+                    })
+                    let itemstring=JSON.stringify(itemArray);
+                    localStorage.setItem("item", itemstring);
+                    showData();
+                    count();
+                })
+
         	});
         </script>
         
